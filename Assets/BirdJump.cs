@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BirdJump : MonoBehaviour
 {
@@ -23,5 +24,9 @@ public class BirdJump : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpPower;// (0,3)   
         }
+    }
+    //콜라이더 충돌 시 이벤트 발생-> 게임오버 씬으로 이동
+    private void OnCollisionEnter2D(Collision2D other) {
+        SceneManager.LoadScene("GameOverScene");
     }
 }
