@@ -22,11 +22,19 @@ public class BirdJump : MonoBehaviour
         //마우스 왼쪽 버튼을 눌렀을 때
         if (Input.GetMouseButtonDown(0))
         {
+            // 사운드 플레이
+            GetComponent<AudioSource>().Play();
+            // 점프 이벤트
             rb.velocity = Vector2.up * jumpPower;// (0,3)   
         }
     }
-    //콜라이더 충돌 시 이벤트 발생-> 게임오버 씬으로 이동
+    //콜라이더 충돌 시 이벤트 발생
     private void OnCollisionEnter2D(Collision2D other) {
+        // 최고 점수 if문
+        if(Score.score > Score.bestScore) {
+            Score.bestScore = Score.score;
+        }
+        // 게임오버 씬으로 이동
         SceneManager.LoadScene("GameOverScene");
     }
 }
